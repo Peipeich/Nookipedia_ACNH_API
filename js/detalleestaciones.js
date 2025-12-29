@@ -6,7 +6,7 @@ $(document).ready(function () {
     const $loading = $("#loading");
 
     if (!eventName) {
-        $details.html("<p>Nombre no encontrado.</p>");
+        $details.html("<p>Event name not found.</p>");
         $loading.hide();
         return;
     }
@@ -21,22 +21,25 @@ $(document).ready(function () {
             "Accept-Version": "1.0.0"
         }
     })
-    .then(res => res.json())
+    .then(res => {
+        if (!res.ok) throw new Error("API Connection Error");
+        return res.json();
+    })
     .then(events => {
         const event = events.find(e => e.event === eventName);
 
-        if (!event) throw new Error("No se encontró el evento.");
+        if (!event) throw new Error("Event not found.");
 
         $details.empty();
 
         const html = `
             <div>
                 <h1>${event.event}</h1>
-                <p>Fecha: ${event.date}</p>
-                <p>Tipo: ${event.type}</p>
-                <p>Descripción: ${event.description || "Sin descripción disponible."}</p>
+                <p><strong>Date:</strong> ${event.date || "N/A"}</p>
+                <p><strong>Type:</strong> ${event.type || "General"}</p>
+                <p><strong>Description:</strong> ${event.description || "No description available."}</p>
             </div>
-            <a href="estaciones.html">Volver</a>
+            <a href="estaciones.html">Back to list</a>
         `;
         $details.append(html);
     })
@@ -44,6 +47,6 @@ $(document).ready(function () {
         $details.html(`<p>Error: ${err.message}</p>`);
     })
     .finally(() => {
-        $loading.hide();
+        if ($loading.length) $loading.hide();
     });
 });

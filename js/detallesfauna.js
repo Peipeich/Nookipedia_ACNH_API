@@ -6,13 +6,12 @@ $(document).ready(function () {
     const $loading = $("#loading");
 
     if (!fishName) {
-        $details.html("<p>Error: No se recibió el nombre del pez.</p>");
+        $details.html("<p>Error: No fish name provided.</p>");
         $loading.hide();
         return;
     }
 
     const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
-    // Traemos la lista completa para buscar el pez exacto
     const apiUrl = "https://api.nookipedia.com/nh/fish"; 
     const proxyUrl = "https://corsproxy.io/?url=";
 
@@ -24,41 +23,41 @@ $(document).ready(function () {
         }
     })
     .then(res => {
-        if (!res.ok) throw new Error("Error al conectar con la API");
+        if (!res.ok) throw new Error("Error connecting to the API");
         return res.json();
     })
     .then(fishList => {
-        // Buscamos el pez que coincida con el nombre de la URL
+        // Search for the fish matching the name from the URL
         const fish = fishList.find(f => f.name.toLowerCase() === fishName.toLowerCase());
 
         if (!fish) {
-            throw new Error(`No se encontró el pez "${fishName}" en la lista.`);
+            throw new Error(`Fish "${fishName}" not found in the list.`);
         }
 
         $details.empty();
 
         const imagen = fish.image_url || fish.render_url || "";
-        const meses = (fish.north && fish.north.months) ? fish.north.months : "Disponible todo el año";
+        const months = (fish.north && fish.north.months) ? fish.north.months : "Available all year";
 
         const html = `
             <div>
                 <h1>${fish.name}</h1>
                 <img src="${imagen}" alt="${fish.name}">
                 <ul>
-                    <li><strong>Precio:</strong> ${fish.sell_nook || "N/A"} bayas</li>
-                    <li><strong>Ubicación:</strong> ${fish.location || "N/A"}</li>
-                    <li><strong>Meses:</strong> ${meses}</li>
+                    <li><strong>Price:</strong> ${fish.sell_nook || "N/A"} Bells</li>
+                    <li><strong>Location:</strong> ${fish.location || "N/A"}</li>
+                    <li><strong>Months:</strong> ${months}</li>
                 </ul>
                 <p><em>"${fish.catchphrase || ""}"</em></p>
                 <br>
-                <a href="fauna.html">Volver a la lista</a>
+                <a href="fauna.html">Back to list</a>
             </div>
         `;
         $details.html(html);
     })
     .catch(err => {
         console.error("Error:", err);
-        $details.html(`<p>Hubo un problema: ${err.message}</p>`);
+        $details.html(`<p>There was a problem: ${err.message}</p>`);
     })
     .finally(() => {
         if ($loading.length) $loading.hide();
