@@ -4,12 +4,12 @@ $(document).ready(function () {
     // 1. Asegúrate de que esta variable esté correctamente definida aquí
     const villagerID = urlParams.get("id"); 
 
-    const $gameDetailsCont = $("#gameDetails");
+    const $villagersdetailscont = $("#villagerDetails");
     const $loading = $("#loading");
 
     // 2. Verificación de seguridad
     if (!villagerID) {
-        $gameDetailsCont.html("<p>Error: No se proporcionó un nombre de vecino.</p>");
+        $villagersdetailscont.html("<p>Error: No se proporcionó un nombre de vecino.</p>");
         $loading.hide();
         return;
     }
@@ -44,11 +44,11 @@ $(document).ready(function () {
             <p><strong>Cumpleaños:</strong> ${villager.birthday_month} ${villager.birthday_day}</p>
             <p><strong>Frase:</strong> "${villager.phrase}"</p>
         `;
-        $gameDetailsCont.html(html);
+        $villagersdetailscont.html(html);
     })
     .catch(err => {
         console.error("Error:", err);
-        $gameDetailsCont.html(`<p style="color:red;">${err.message}</p>`);
+        $villagersdetailscont.html(`<p style="color:red;">${err.message}</p>`);
     })
     .finally(() => {
         $loading.hide();
