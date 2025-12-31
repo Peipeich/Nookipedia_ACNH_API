@@ -11,7 +11,7 @@ $(document).ready(function () {
         return;
     }
 
-    const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
+    const apiKey = "PONER-ACA-LA-API-KEY";
     const apiUrl = "https://api.nookipedia.com/nh/fish"; 
     const proxyUrl = "https://corsproxy.io/?url=";
 

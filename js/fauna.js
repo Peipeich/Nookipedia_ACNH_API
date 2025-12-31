@@ -2,7 +2,7 @@ $(document).ready(function () {
     const $faunaList = $("#resultCont");
     const $loading = $("#loading");
 
-    const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
+    const apiKey =  "PONER-ACA-LA-API-KEY";
     // Removed ?per_page=9 to get the full list
     const apiUrl = "https://api.nookipedia.com/nh/fish"; 
     const proxyUrl = "https://corsproxy.io/?url=";

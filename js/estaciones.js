@@ -2,7 +2,7 @@ $(document).ready(function () {
     const $seasonList = $("#resultCont");
     const $loading = $("#loading");
 
-    const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
+    const apiKey =  "PONER-ACA-LA-API-KEY";
     const apiUrl = "https://api.nookipedia.com/nh/events"; 
     const proxyUrl = "https://corsproxy.io/?url=";
 

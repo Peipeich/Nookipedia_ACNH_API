@@ -4,13 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Villagers</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <a href="personajes.html">personajes</a>
-        <a href="fauna.html">fauna</a>
-        <a href="estaciones.html">estaciones</a>
-    </header>
+    <nav class="navbar">
+    <div class="logo"><a href="index.html">ACNH</a></div>
+    
+    <div class="menu-toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
 
+    <ul class="nav-links">
+        <li><a href="#">EXPLORA</a></li>
+        <li class="has-dropdown">
+            <a href="#" class="parent-link">ANIMAL CROSSING <span class="flecha">&#9662;</span></a>
+            <div class="dropdown-content">
+                <a href="personajes.html">personajes</a>
+                <a href="fauna.html">fauna</a>
+                <a href="estaciones.html">estaciones</a>
+            </div>
+        </li>
+        <li><a href="#">COMUNIDAD</a></li>
+        <li><a href="#">OTRAS EDICIONES</a></li>
+    </ul>
+</nav>
+    <main>
+        <div class="carousel-container">
+            <button class="nav-btn" id="prevBtn">&#10094;</button>
+            <div class="carousel-viewport" id="carousel"></div>
+            <button class="nav-btn" id="nextBtn">&#10095;</button>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
+
