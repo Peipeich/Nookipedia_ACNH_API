@@ -34,7 +34,7 @@ $(document).ready(function () {
             // Enlace corregido a detalleestaciones.html
             htmlContent += `
                 <li>
-                    <a href="detalleestaciones.html?name=${encodeURIComponent(eventName)}">
+                    <a href="detalleevento.html?name=${encodeURIComponent(eventName)}">
                         ${eventName}
                     </a>
                     <span> - ${date}</span>

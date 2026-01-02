@@ -11,7 +11,7 @@ $(document).ready(function () {
         return;
     }
 
-    const apiKey =  "PONER-ACA-LA-API-KEY";
+    const apiKey = "PONER-ACA-LA-API-KEY";
     const apiUrl = "https://api.nookipedia.com/nh/events"; 
     const proxyUrl = "https://corsproxy.io/?url=";
 
@@ -37,9 +37,7 @@ $(document).ready(function () {
                 <h1>${event.event}</h1>
                 <p><strong>Date:</strong> ${event.date || "N/A"}</p>
                 <p><strong>Type:</strong> ${event.type || "General"}</p>
-                <p><strong>Description:</strong> ${event.description || "No description available."}</p>
             </div>
-            <a href="estaciones.html">Back to list</a>
         `;
         $details.append(html);
     })
