@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // --- CONFIGURACIÓN GLOBAL ---
-    const API_KEY = "eebcaf09-f716-4786-ba4e-9fba802d6aaa"; 
+    const API_KEY = "PONER-ACA-LA-API-KEY"; 
     const PROXY = "https://corsproxy.io/?url=";
     const HEADERS = {
         'X-API-KEY': API_KEY,
