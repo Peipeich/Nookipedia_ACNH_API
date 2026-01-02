@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // --- CONFIGURACIÓN GLOBAL ---
-    const API_KEY = "PONER-ACA-LA-API-KEY"; 
+    const API_KEY = "eebcaf09-f716-4786-ba4e-9fba802d6aaa"; 
     const PROXY = "https://corsproxy.io/?url=";
     const HEADERS = {
         'X-API-KEY': API_KEY,
@@ -13,11 +13,11 @@ $(document).ready(function() {
         $('.nav-links').toggleClass('active');
     });
 
+    // Manejo de clicks en dropdown para móvil
     $('.parent-link').on('click', function(e) {
         if (window.innerWidth <= 1024) {
             e.preventDefault();
             $(this).siblings('.dropdown-content').toggleClass('show-submenu');
-            $(this).find('.flecha').toggleClass('rotate-arrow');
         }
     });
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
                 const $cont = $("#carousel-villagers");
                 $cont.empty();
                 
-                // Solo tomamos 4 para que el diseño sea fijo y el 2º siempre sea el grande
+                // Solo 4 personajes: el 2º será el grande por CSS
                 const lista = data.slice(0, 4);
 
                 lista.forEach(item => {
@@ -45,6 +45,9 @@ $(document).ready(function() {
                     `;
                     $cont.append(cardHtml);
                 });
+            },
+            error: function() {
+                $("#carousel-villagers").html('<p>Error cargando vecinos</p>');
             }
         });
     }
@@ -73,6 +76,9 @@ $(document).ready(function() {
                     `;
                     $cont.append(cardHtml);
                 });
+            },
+            error: function() {
+                $(containerId).html('<p>Error cargando fauna</p>');
             }
         });
     }
@@ -82,7 +88,7 @@ $(document).ready(function() {
     cargarFauna("https://api.nookipedia.com/nh/fish", "#carousel-peces");
     cargarFauna("https://api.nookipedia.com/nh/bugs", "#carousel-insectos");
 
-    // Lógica de navegación (Solo para Peces e Insectos, ya que Vecinos son 4 fijos)
+    // Lógica de navegación (Solo para Peces e Insectos)
     function setupNav(prevBtn, nextBtn, viewportId, scrollAmount) {
         $(nextBtn).on('click', function() {
             $(viewportId).animate({ scrollLeft: `+=${scrollAmount}` }, 400);
@@ -96,7 +102,7 @@ $(document).ready(function() {
     setupNav("#prev-i", "#next-i", "#carousel-insectos", 250);
 
 
-    // --- 3. GRID DE EVENTOS (Tablero Ajedrez) ---
+    // --- 3. GRID DE EVENTOS (Tablero Ajedrez Invertido) ---
 
     function obtenerEventos() {
         $.ajax({
@@ -107,20 +113,26 @@ $(document).ready(function() {
                 const $grid = $('.grid-eventos');
                 $grid.empty();
 
+                // Tomamos 4 eventos
                 $.each(eventos.slice(0, 4), function(i, ev) {
                     const colorClase = (i % 2 === 0) ? 'image-placeholder-green' : 'image-placeholder-blue';
+                    
                     const $divColor = $('<div>').addClass(`evento-card ${colorClase}`);
                     const $divTitulo = $('<div>')
-                        .addClass('evento-card evento-clickeable')
+                        .addClass('evento-card')
+                        .css({'background-color': '#d3d3d3', 'cursor': 'pointer'})
                         .text(ev.event)
                         .on('click', function() {
                             window.location.href = `evento.html?nombre=${encodeURIComponent(ev.event)}`;
                         });
 
+                    // LÓGICA DE TABLERO:
+                    // Fila 1 (i=0,1): Texto -> Color
+                    // Fila 2 (i=2,3): Color -> Texto (Invertido)
                     if (i < 2) {
-                        $grid.append($divColor, $divTitulo);
-                    } else {
                         $grid.append($divTitulo, $divColor);
+                    } else {
+                        $grid.append($divColor, $divTitulo);
                     }
                 });
             }

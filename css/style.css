@@ -1,10 +1,8 @@
 :root {
-    --accent: #78c8a0;      /* Verde principal */
-    --accent-dark: #6b8a59;
-    --bg-crema: #fdf6e3;
-    --brown: #8b5e3c;
-    --blue-fauna: #ade1fb;
-    --orange-event: #fbc669;
+    --yellow: #FBCB77;      
+    --brown: #A9712E;
+    --green: #75935D;
+    --blue: #A4D9FE;
 }
 
 body {
@@ -14,7 +12,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- NAVEGACIÓN --- */
+/* --- ERROR 1 CORREGIDO: NAVEGACIÓN Y DROPDOWN --- */
 nav {
     position: fixed;
     z-index: 9999;
@@ -35,10 +33,38 @@ nav {
     padding: 0;
 }
 
+.nav-links li { position: relative; }
+
 .nav-links li a {
     text-decoration: none;
     color: var(--brown);
     font-weight: bold;
+}
+
+/* Dropdown para Escritorio (Hover) */
+@media (min-width: 1025px) {
+    .nav-links li:hover .dropdown-content {
+        display: block;
+    }
+}
+
+.dropdown-content {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 10px 0;
+    z-index: 1000;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 20px;
+    font-size: 0.9rem;
 }
 
 /* Hamburguesa */
@@ -57,26 +83,19 @@ nav {
     border-radius: 2px;
 }
 
-/* --- ESTRUCTURA GENERAL DE CARRUSELES --- */
-.carousel-container, .carousel-container-p, .carousel-container-i {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 50px;
-    position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
+/* --- ERROR 2 CORREGIDO: PERSONAJES (BURBUJAS) --- */
+.carousel-container {
+    padding: 60px 50px; /* Aumentado para que el zoom no choque con el título */
 }
 
-/* --- VECINOS (DISEÑO BURBUJA - FIJO 4 PERSONAJES) --- */
 .viewport-v {
     display: flex;
-    overflow: visible; /* Importante para que el zoom del 2º no se corte */
-    justify-content: center; /* Centra los 4 personajes */
+    overflow: visible; /* IMPORTANTE: Para que el zoom del 2º no se corte */
+    justify-content: center;
     align-items: center; 
-    padding: 80px 20px; 
-    gap: 40px;
+    gap: 50px;
     width: 100%;
+    min-height: 200px;
 }
 
 .v-bubble-card {
@@ -98,15 +117,13 @@ nav {
     object-fit: contain;
 }
 
-/* EFECTO: El segundo vecino siempre más grande */
+/* El segundo siempre grande */
 .v-bubble-card:nth-child(2) {
     transform: scale(1.6);
     z-index: 10;
     border: 4px solid var(--accent);
-    box-shadow: 0 8px 25px rgba(120, 200, 160, 0.3);
 }
 
-/* Nombre del vecino (Aparece al hacer Hover) */
 .villager-name {
     position: absolute;
     bottom: -40px;
@@ -115,26 +132,19 @@ nav {
     padding: 4px 12px;
     border-radius: 12px;
     font-size: 0.75rem;
-    white-space: nowrap;
     opacity: 0;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
+    transition: 0.3s;
 }
 
-.v-bubble-card:hover .villager-name {
-    opacity: 1;
-    transform: translateY(0);
-}
+.v-bubble-card:hover .villager-name { opacity: 1; }
 
-/* --- FAUNA (DISEÑO CUADRADO - CON SCROLL) --- */
+/* --- FAUNA (CUADRADOS) --- */
 .viewport-f {
     display: flex;
     overflow: hidden;
     scroll-behavior: smooth;
     gap: 20px;
     padding: 20px 10px;
-    width: 100%;
 }
 
 .f-square-card {
@@ -142,78 +152,22 @@ nav {
     background: white;
     border: 3px solid var(--brown);
     border-radius: 15px;
-    padding: 20px 15px;
+    padding: 15px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
 }
 
-.f-square-card:hover {
-    transform: translateY(-8px);
-}
-
-.f-square-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-bottom: 10px;
-}
-
-.f-square-card h4 {
-    margin: 10px 0;
-    color: var(--brown);
-    font-size: 0.95rem;
-    text-transform: capitalize;
-}
-
-/* Botones Navegación */
-.nav-btn-v, .nav-btn-f {
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: 0.3s;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 20;
-}
-
-.nav-btn-v:hover, .nav-btn-f:hover { background: var(--accent-dark); }
-
-/* Botón VER */
-.view-btn {
-    display: inline-block;
-    margin-top: 8px;
-    padding: 6px 18px;
-    background: var(--accent);
-    color: white;
-    text-decoration: none;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.view-btn:hover { background: var(--accent-dark); }
-
-/* --- SECCIÓN EVENTOS --- */
+/* --- ERROR 3 CORREGIDO: EVENTOS (2 FILAS / TABLERO) --- */
 .eventos-container {
     background-color: var(--orange-event);
     padding: 50px 0;
     text-align: center;
 }
 
-.grid-eventos {
+ .grid-eventos {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* En PC se ven los 4 en línea */
     width: 100%;
-    margin-top: 30px;
 }
 
 .evento-card {
@@ -224,15 +178,6 @@ nav {
     padding: 20px;
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.85rem;
-    box-sizing: border-box;
-}
-
-.evento-card:not(.image-placeholder-green):not(.image-placeholder-blue) {
-    background-color: #d3d3d3;
-    color: #7a7a7a;
-    cursor: pointer;
-    transition: 0.2s;
 }
 
 .image-placeholder-green { background-color: var(--accent-dark); }
@@ -243,23 +188,31 @@ nav {
     .menu-toggle { display: flex; }
     .nav-links {
         display: none;
+        flex-direction: column;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        flex-direction: column;
         background: white;
         padding: 20px 0;
+    }
+
+    .grid-eventos {
+        grid-template-columns: repeat(2, 1fr); /* En Tablet/Móvil hace el 2x2 de ajedrez */
+    }
+
+    .nav-links.active { display: flex; }
+
+    /* Dropdown en móvil por click */
+    .dropdown-content {
+        position: static;
+        box-shadow: none;
+        width: 100%;
         text-align: center;
     }
-    .nav-links.active { display: flex; }
-    
-    .viewport-v { gap: 20px; overflow-x: auto; justify-content: flex-start; }
-    .v-bubble-card:nth-child(2) { transform: scale(1.3); } 
-}
+    .show-submenu { display: block !important; }
 
-@media (max-width: 600px) {
-    .grid-eventos { grid-template-columns: repeat(2, 1fr); }
-    .carousel-container, .carousel-container-p, .carousel-container-i { padding: 10px 20px; }
-    .nav-btn-v, .nav-btn-f { width: 35px; height: 35px; }
+    .grid-eventos {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 para formar el tablero en tablet/móvil */
+    }
 }
