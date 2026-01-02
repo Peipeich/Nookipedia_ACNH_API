@@ -78,7 +78,7 @@ nav {
 .menu-toggle .bar {
     width: 25px;
     height: 3px;
-    background-color: var(--accent);
+    background-color: var(--brown);
     transition: 0.4s;
     border-radius: 2px;
 }
@@ -182,10 +182,17 @@ nav {
 
 .image-placeholder-green { background-color: var(--accent-dark); }
 .image-placeholder-blue { background-color: var(--blue-fauna); }
+/* Añade esto a tus contenedores de carrusel en CSS */
+.viewport-v, .viewport-f {
+    touch-action: pan-y; /* Permite scroll vertical de la página pero bloquea el horizontal nativo para usar el nuestro */
+}
 
 /* --- RESPONSIVE --- */
 @media (max-width: 1024px) {
-    .menu-toggle { display: flex; }
+    .menu-toggle { 
+        display: flex; 
+    
+    }
     .nav-links {
         display: none;
         flex-direction: column;
