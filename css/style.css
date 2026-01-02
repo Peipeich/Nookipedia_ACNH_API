@@ -9,7 +9,6 @@ body {
 }
 
 /* NAV (x editar) */
-/* --- TU BASE MANTENIDA --- */
 nav {
     position: fixed;
     z-index: 9999;
@@ -39,7 +38,7 @@ nav ul {
 
 nav ul li { position: relative; padding-bottom: 10px; }
 
-/* El submenú (DIV) */
+/* El submenú */
 nav ul li div {
     display: none;
     position: absolute;
@@ -55,7 +54,7 @@ nav ul li div {
 
 /* --- ESTILOS HAMBURGUESA Y X ANIMADA --- */
 .menu-toggle {
-    display: none; /* Oculto en PC */
+    display: none; 
     flex-direction: column;
     cursor: pointer;
     gap: 5px;
@@ -66,7 +65,7 @@ nav ul li div {
     transition: 0.4s; border-radius: 2px;
 }
 
-/* Animación a X */
+/* Animación icono X */
 .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
 .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -86,7 +85,7 @@ nav ul li div {
     justify-content: center;
     gap: 30px;
     flex-grow: 1;
-    min-height: 300px; /* Asegura que el contenedor sea visible */
+    min-height: 300px; 
 }
 
 .villager-card {
@@ -109,7 +108,7 @@ nav ul li div {
     object-fit: contain;
 }
 
-/* LA REGLA QUE PEDISTE: El segundo hijo es más grande */
+/* Tarjeta más grande */
 .villager-card:nth-child(2) {
     transform: scale(1.5);
     z-index: 10;
@@ -135,8 +134,93 @@ nav ul li div {
     opacity: 1;
 }
 
+/* EVENTO en home */
+/* Contenedor principal con el fondo naranja */
+.eventos-container {
+    background-color: #fbc669; /* Color crema/naranja de fondo */
+    padding: 30px 0;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+}
+
+/* Título superior */
+.eventos-container h2 {
+    color: #8b5e3c;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* El Grid - Sin espacios para que los cuadros encajen */
+.grid-eventos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas iguales */
+    width: 100%;
+    gap: 0; /* Sin separaciones entre cuadros */
+    margin-bottom: 30px;
+}
+
+/* Estilo base para todos los cuadrados */
+.evento-card {
+    aspect-ratio: 1 / 1; /* Cuadrados perfectos siempre */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    box-sizing: border-box;
+}
+
+/* Cuadrados grises (TÍTULOS DE EVENTO) */
+.evento-card:not(.image-placeholder-green):not(.image-placeholder-blue) {
+    background-color: #d3d3d3; /* Gris claro */
+    color: #7a7a7a;
+    cursor: pointer; /* Indica que es clicable */
+    transition: background-color 0.2s, color 0.2s;
+}
+
+/* Efecto al pasar el mouse por los títulos */
+.evento-card:not(.image-placeholder-green):not(.image-placeholder-blue):hover {
+    background-color: #c5c5c5; /* Un gris un poco más oscuro */
+    color: #555;
+}
+
+/* Cuadrado Verde (Decorativo) */
+.image-placeholder-green {
+    background-color: #7da068;
+}
+
+/* Cuadrado Azul (Decorativo) */
+.image-placeholder-blue {
+    background-color: #ade1fb;
+}
+
+/* Botón "VER DETALLES" inferior */
+.eventos-container a {
+    display: inline-block;
+    background-color: #7da068; /* Color verde del botón */
+    color: #ade1fb; /* Color azul claro del texto */
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.2s, background-color 0.2s;
+    margin-top: 10px;
+}
+
+.eventos-container a:hover {
+    transform: scale(1.05);
+    background-color: #6b8a59;
+}
 
 
+/* MEDIA QUERYS  */
 @media (min-width: 1025px) {
     /* La magia del hover */
     .has-dropdown:hover .dropdown-content {
@@ -193,3 +277,9 @@ nav ul li div {
    
 }
 
+/* Responsivo: 2 columnas en móviles para que no se vea muy pequeño */
+@media (max-width: 600px) {
+    .grid-eventos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
