@@ -1,16 +1,6 @@
 $(document).ready(function () {
-    const params = new URLSearchParams(window.location.search);
-    const fishName = params.get("name");
-
-    const $details = $("#faunaDetails"); 
+    const $container = $("#faunaDetails"); // O el ID de tu contenedor de lista
     const $loading = $("#loading");
-
-    if (!fishName) {
-        $details.html("<p>Error: No fish name provided.</p>");
-        $loading.hide();
-        return;
-    }
-
     const apiKey = "PONER-ACA-LA-API-KEY";
     const apiUrl = "https://api.nookipedia.com/nh/fish"; 
     const proxyUrl = "https://corsproxy.io/?url=";
@@ -27,37 +17,31 @@ $(document).ready(function () {
         return res.json();
     })
     .then(fishList => {
-        // Search for the fish matching the name from the URL
-        const fish = fishList.find(f => f.name.toLowerCase() === fishName.toLowerCase());
+        $container.empty();
 
-        if (!fish) {
-            throw new Error(`Fish "${fishName}" not found in the list.`);
-        }
+        // LIMITAR A 20 PECES
+        const limitedList = fishList.slice(0, 20);
 
-        $details.empty();
+        let html = '<div class="grid-fauna">'; // Puedes usar un grid similar al de eventos
+        
+        limitedList.forEach(fish => {
+            const imagen = fish.image_url || fish.render_url || "";
+            html += `
+                <div class="fish-card">
+                    <h3>${fish.name}</h3>
+                    <img src="${imagen}" alt="${fish.name}" width="80">
+                    <p>Price: ${fish.sell_nook} Bells</p>
+                    <a href="detalle-pez.html?name=${encodeURIComponent(fish.name)}">Ver más</a>
+                </div>
+            `;
+        });
 
-        const imagen = fish.image_url || fish.render_url || "";
-        const months = (fish.north && fish.north.months) ? fish.north.months : "Available all year";
-
-        const html = `
-            <div>
-                <h1>${fish.name}</h1>
-                <img src="${imagen}" alt="${fish.name}">
-                <ul>
-                    <li><strong>Price:</strong> ${fish.sell_nook || "N/A"} Bells</li>
-                    <li><strong>Location:</strong> ${fish.location || "N/A"}</li>
-                    <li><strong>Months:</strong> ${months}</li>
-                </ul>
-                <p><em>"${fish.catchphrase || ""}"</em></p>
-                <br>
-                <a href="fauna.html">Back to list</a>
-            </div>
-        `;
-        $details.html(html);
+        html += '</div>';
+        $container.html(html);
     })
     .catch(err => {
         console.error("Error:", err);
-        $details.html(`<p>There was a problem: ${err.message}</p>`);
+        $container.html(`<p>Error: ${err.message}</p>`);
     })
     .finally(() => {
         if ($loading.length) $loading.hide();

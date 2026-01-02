@@ -1,21 +1,10 @@
 $(document).ready(function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    
-    // Get the ID (name) from the URL
-    const villagerID = urlParams.get("id"); 
-
     const $villagersdetailscont = $("#villagerDetails");
     const $loading = $("#loading");
 
-    // Security check
-    if (!villagerID) {
-        $villagersdetailscont.html("<p>Error: No villager name provided.</p>");
-        $loading.hide();
-        return;
-    }
-
-    const apiKey =  "PONER-ACA-LA-API-KEY";
-    const apiUrl = `https://api.nookipedia.com/villagers?name=${encodeURIComponent(villagerID)}`;
+    const apiKey = "PONER-ACA-LA-API-KEY";
+    // Usamos el endpoint general de vecinos para traer a todos
+    const apiUrl = `https://api.nookipedia.com/villagers`; 
     const proxyUrl = "https://corsproxy.io/?url=";
 
     fetch(proxyUrl + encodeURIComponent(apiUrl), {
@@ -30,27 +19,30 @@ $(document).ready(function () {
         return res.json();
     })
     .then(data => {
-        // Name search returns an array [ ]
         if (!data || data.length === 0) {
-            throw new Error("Villager not found: " + villagerID);
+            throw new Error("No villagers found.");
         }
 
-        const villager = data[0]; // First result
+        // --- EL TRUCO ESTÁ AQUÍ ---
+        // Usamos .slice(0, 20) para quedarnos solo con los primeros 20 del array
+        const limitedVillagers = data.slice(0, 20);
 
-        const html = `
-            <h2>${villager.name}</h2>
-            <img src="${villager.image_url}" alt="${villager.name}" width="150">
-            <div>
-                <p><strong>Species:</strong> ${villager.species}</p>
-                <p><strong>Personality:</strong> ${villager.personality}</p>
-                <p><strong>Gender:</strong> ${villager.gender}</p>
-                <p><strong>Birthday:</strong> ${villager.birthday_month} ${villager.birthday_day}</p>
-                <p><strong>Catchphrase:</strong> "${villager.phrase}"</p>
-                <p><strong>Sign:</strong> ${villager.sign}</p>
-            </div>
-            <br>
-            <a href="villagers.html">Back to list</a>
-        `;
+        let html = "";
+        
+        // Recorremos los 20 personajes limitados
+        limitedVillagers.forEach(villager => {
+            html += `
+                <div class="villager-card">
+                    <h2>${villager.name}</h2>
+                    <img src="${villager.image_url}" alt="${villager.name}" width="100">
+                    <p><strong>Species:</strong> ${villager.species}</p>
+                    <p><strong>Personality:</strong> ${villager.personality}</p>
+                    <a href="detalle-vecino.html?id=${encodeURIComponent(villager.name)}">Ver Detalles</a>
+                    <hr>
+                </div>
+            `;
+        });
+        
         $villagersdetailscont.html(html);
     })
     .catch(err => {
