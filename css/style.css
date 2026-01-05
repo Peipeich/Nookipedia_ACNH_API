@@ -75,7 +75,7 @@
        justify-content: space-between;
        align-items: center;
        padding: 20px 5%;
-       background: var(--white);
+       background: var(--yellow);
        box-shadow: var(--shadow-soft);
    }
    
@@ -329,7 +329,7 @@
       CARRUSELES - ESTILO BURBUJAS (VILLAGERS)
       ========================================== */
    .seccion-villagers {
-       background-color: var(--bg-cream-light);
+       background-color: var(--yellow);
    }
    
    .carousel-container {
