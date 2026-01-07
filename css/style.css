@@ -22,8 +22,9 @@
        --bg-cream-light: #FFF8F0;
        
        /* Fuentes */
-       --font-heading: 'Bobby Jones', 'Arial Black', sans-serif;
-       --font-body: 'Poppins', sans-serif;
+       --font-heading: panel, serif;
+       --font-body: epilogue, sans-serif;
+       
        
        /* Sombras */
        --shadow-soft: 0 4px 15px rgba(0,0,0,0.08);
