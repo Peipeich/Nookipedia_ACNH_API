@@ -1,22 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="page-list">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Fauna</title>
+    <title>Fauna | ACNH</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jgc2fky.css">
 </head>
-<body>
+<body class="page-list page-fauna">
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">ACNH</a></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="#">EXPLORA</a></li>
+            <li class="has-dropdown">
+                <a href="#" class="parent-link">ANIMAL CROSSING <span class="flecha">▼</span></a>
+                <div class="dropdown-content">
+                    <a href="personajes.html">PERSONAJES</a>
+                    <a href="fauna.html">FAUNA</a>
+                    <a href="evento.html">EVENTOS</a>
+                </div>
+            </li>
+            <li><a href="#">COMUNIDAD</a></li>
+        </ul>
+    </nav>
+
     <header>
-        <h1>Lista de Fauna</h1>
+        <h1>FAUNA DEL MAR</h1>
     </header>
 
-    <main>
-        <div id="loading">Loading...</div>
+    <!-- Filtros funcionales para Fauna -->
+    <div class="filter-container filter-fauna">
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-type="fish">🐟 Peces</button>
+            <button class="tab-btn" data-type="bugs">🦋 Insectos</button>
+            <button class="tab-btn" data-type="sea">🦑 Criaturas Marinas</button>
+        </div>
+
+        <div class="filter-group">
+            <label for="filterMonth">Mes disponible:</label>
+            <select id="filterMonth" class="filter-select">
+                <option value="all">Todos los meses</option>
+                <option value="1">Enero</option>
+                <option value="2">Febrero</option>
+                <option value="3">Marzo</option>
+                <option value="4">Abril</option>
+                <option value="5">Mayo</option>
+                <option value="6">Junio</option>
+                <option value="7">Julio</option>
+                <option value="8">Agosto</option>
+                <option value="9">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="filterLocation">Ubicación:</label>
+            <select id="filterLocation" class="filter-select">
+                <option value="all">Todas las ubicaciones</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="filterPrice">Precio mínimo:</label>
+            <select id="filterPrice" class="filter-select">
+                <option value="0">Cualquier precio</option>
+                <option value="1000">1,000+ Bells</option>
+                <option value="2000">2,000+ Bells</option>
+                <option value="5000">5,000+ Bells</option>
+                <option value="10000">10,000+ Bells</option>
+            </select>
+        </div>
+        
+        <button id="resetFilters" class="filter-btn">Reiniciar Filtros</button>
+        
+        <div class="filter-results">
+            <span id="filterCount"></span>
+        </div>
+    </div>
+
+    <main class="list-container list-fauna">
+        <div id="loading">Cargando fauna...</div>
         <ul id="resultCont"></ul>
     </main>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Sección 1 -->
+            <div class="footer-section">
+                <h3>Sobre ACNH</h3>
+                <p>Tu guía definitiva para Animal Crossing: New Horizons. Descubre vecinos, fauna, eventos y mucho más.</p>
+            </div>
+            <!-- Sección 2 -->
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="personajes.html">Personajes</a></li>
+                    <li><a href="fauna.html">Fauna</a></li>
+                    <li><a href="evento.html">Eventos</a></li>
+                    <li><a href="#">Comunidad</a></li>
+                </ul>
+            </div>
+            <!-- Sección 3 -->
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <p>Únete a nuestra comunidad y mantente al día con las últimas novedades</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Discord">💬</a>
+                    <a href="#" aria-label="YouTube">📺</a>
+                </div>
+            </div>
+        </div>
+        <!-- Decoración con hojas -->
+        <div class="footer-decoration">
+            <span class="leaf-icon">🍃</span>
+            <span class="leaf-icon">🍂</span>
+            <span class="leaf-icon">🍃</span>
+        </div>
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>Hecho con <span class="heart">❤️</span> para los fans de Animal Crossing</p>
+            <p>&copy; 2026 ACNH Wiki | Animal Crossing es propiedad de Nintendo</p>
+        </div>
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/fauna.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
