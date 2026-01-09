@@ -1349,6 +1349,27 @@
     background: var(--green);
 }
 
+/* ESTILOS PARA FILTROS DE EVENTOS  */
+
+/* Fondo específico para página de eventos */
+.page-event .filter-container {
+    background: var(--bg-crema);
+    padding: 30px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.page-event header {
+    background: var(--blue);
+}
+
+.page-event .list-container {
+    background: var(--bg-crema);
+}
+
 /* Pestañas de tipo de fauna */
 .filter-tabs {
     width: 100%;

@@ -17,7 +17,7 @@ $(document).ready(function () {
         }
     })
     .then(res => {
-        if (res.status === 429) throw new Error("Rate limit exceeded. Please wait a minute.");
+        if (res.status === 429) throw new Error("Too many requests. Please wait a moment.");
         if (!res.ok) throw new Error("Error: " + res.status);
         return res.json();
     })

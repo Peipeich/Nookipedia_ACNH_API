@@ -2,7 +2,7 @@ $(document).ready(function () {
     const $seasonList = $("#resultCont");
     const $loading = $("#loading");
 
-    const apiKey =  "PONER-ACA-LA-API-KEY";
+    const apiKey =  "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
     const apiUrl = "https://api.nookipedia.com/nh/events"; 
     const proxyUrl = "https://corsproxy.io/?url=";
 
@@ -16,20 +16,20 @@ $(document).ready(function () {
         }
     })
     .then(res => {
-        if (res.status === 429) throw new Error("Límite de peticiones alcanzado. Espera un momento.");
+        if (res.status === 429) throw new Error("Too many requests. Please wait a moment.");
         if (!res.ok) throw new Error("Error en la API: " + res.status);
         return res.json();
     })
     .then(events => {
         if (!Array.isArray(events) || events.length === 0) {
-            $seasonList.append("<li>No hay eventos disponibles.</li>");
+            $seasonList.append("<li>No events available</li>");
             return;
         }
 
         let htmlContent = "";
         events.forEach(item => {
-            const eventName = item.event || "Evento";
-            const date = item.date || "Sin fecha";
+            const eventName = item.event || "Event";
+            const date = item.date || "No date";
 
             // Enlace corregido a detalleestaciones.html
             htmlContent += `
