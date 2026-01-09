@@ -34,6 +34,39 @@
         <h1>EVENTS</h1>
     </header>
 
+    <!-- Filtros funcionales para Eventos -->
+    <div class="filter-container filter-fauna">
+        <div class="filter-tabs">
+            <button class="tab-btn active" data-type="fish">🐟 Fish</button>
+            <button class="tab-btn" data-type="bugs">🦋 Insects</button>
+            <button class="tab-btn" data-type="sea">🦑 Sea creatures</button>
+        </div>
+
+        <div class="filter-group">
+            <label for="filterLocation">Month:</label>
+            <select id="filterLocation" class="filter-select">
+                <option value="all">Every month</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label for="filterPrice">Event type:</label>
+            <select id="filterPrice" class="filter-select">
+                <option value="0">All types</option>
+                <option value="1000">1,000+ Bells</option>
+                <option value="2000">2,000+ Bells</option>
+                <option value="5000">5,000+ Bells</option>
+                <option value="10000">10,000+ Bells</option>
+            </select>
+        </div>
+        
+        <button id="resetFilters" class="filter-btn">Reset Filters</button>
+        
+        <div class="filter-results">
+            <span id="filterCount"></span>
+        </div>
+    </div>
+
     <main>
         <div id="loading">Loading...</div>
         <ul id="resultCont"></ul>
