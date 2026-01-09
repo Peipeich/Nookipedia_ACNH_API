@@ -103,7 +103,7 @@ $(document).ready(function () {
             }
         })
         .then(res => {
-            if (res.status === 429) throw new Error("Límite de peticiones alcanzado. Espera un momento.");
+            if (res.status === 429) throw new Error("Request limit reached. Please wait a moment.");
             if (!res.ok) throw new Error("Error: " + res.status);
             return res.json();
         })
@@ -131,7 +131,7 @@ $(document).ready(function () {
     // Función para poblar el filtro de ubicación
     function populateLocationFilter(critters, type) {
         $filterLocation.empty();
-        $filterLocation.append('<option value="all">Todas las ubicaciones</option>');
+        $filterLocation.append('<option value="all">All locations</option>');
         
         let locations = [];
         
@@ -217,11 +217,11 @@ $(document).ready(function () {
     // Función para actualizar el contador de resultados
     function updateFilterCount(shown, total) {
         const typeNames = {
-            fish: 'peces',
-            bugs: 'insectos',
-            sea: 'criaturas marinas'
+            fish: 'fish',
+            bugs: 'insects',
+            sea: 'sea creatures'
         };
-        $filterCount.text(`Mostrando ${shown} de ${total} ${typeNames[currentType]}`);
+        $filterCount.text(`Showing ${shown} of ${total} ${typeNames[currentType]}`);
     }
 
     // Event listeners para los filtros

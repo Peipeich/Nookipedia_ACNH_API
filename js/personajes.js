@@ -22,7 +22,7 @@ $(document).ready(function () {
         }
     })
     .then(res => {
-        if (res.status === 429) throw new Error("Demasiadas peticiones. Por favor espera un momento.");
+        if (res.status === 429) throw new Error("Too many requests. Please wait a moment.");
         if (!res.ok) throw new Error("Error de API: " + res.status);
         return res.json();
     })
@@ -116,7 +116,7 @@ $(document).ready(function () {
 
     // Función para actualizar el contador de resultados
     function updateFilterCount(shown, total) {
-        $filterCount.text(`Mostrando ${shown} de ${total} personajes`);
+        $filterCount.text(`Showing ${shown} of ${total} villagers`);
     }
 
     // Event listeners para los filtros
