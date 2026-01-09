@@ -2,7 +2,7 @@ $(document).ready(function () {
     const $villagersdetailscont = $("#villagerDetails");
     const $loading = $("#loading");
 
-    const apiKey = "PONER-ACA-LA-API-KEY";
+    const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
     // Usamos el endpoint general de vecinos para traer a todos
     const apiUrl = `https://api.nookipedia.com/villagers`; 
     const proxyUrl = "https://corsproxy.io/?url=";

@@ -1,9 +1,10 @@
+// js/personajes.js
 $(document).ready(function () {
     const $villagersList = $("#resultCont");
     const $loading = $("#loading");
 
-    const apiKey = "PONER-ACA-LA-API-KEY";
-    const apiUrl = "https://api.nookipedia.com/villagers"; 
+    const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
+    const apiUrl = "https://api.nookipedia.com/villagers?game=nh"; 
     const proxyUrl = "https://corsproxy.io/?url=";
 
     $villagersList.empty();
@@ -22,14 +23,18 @@ $(document).ready(function () {
     .then(villagers => {
         let htmlContent = "";
         
-        // Ahora recorremos el array completo sin usar .slice()
         villagers.forEach(villager => {
             htmlContent += `
                 <li>
-                    <a href="detallepersonaje.html?id=${encodeURIComponent(villager.name)}">
-                        <strong>${villager.name}</strong>
+                    <a href="detallepersonaje.html?id=${encodeURIComponent(villager.name)}" class="character-card">
+                        <div class="character-card-image">
+                            <img src="${villager.image_url}" alt="${villager.name}">
+                        </div>
+                        <div class="character-card-info">
+                            <div class="character-card-name">${villager.name}</div>
+                            <div class="character-card-details">${villager.species}</div>
+                        </div>
                     </a>
-                    <span> (${villager.species})</span>
                 </li>
             `;
         });
@@ -38,7 +43,7 @@ $(document).ready(function () {
     })
     .catch(err => {
         console.error("Error loading villagers:", err);
-        $villagersList.html(`<li>Error: ${err.message}</li>`);
+        $villagersList.html(`<li style="grid-column: 1/-1; text-align:center; color: white;">Error: ${err.message}</li>`);
     })
     .finally(() => {
         $loading.hide();

@@ -1,22 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="page-list">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Villagers</title>
+    <title>Personajes | ACNH</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jgc2fky.css">
 </head>
-<body>
+<body class="page-list">
+    <nav class="navbar">
+        <div class="logo"><a href="index.html">ACNH</a></div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">INICIO</a></li>
+            <li><a href="#">EXPLORA</a></li>
+            <li class="has-dropdown">
+                <a href="#" class="parent-link">ANIMAL CROSSING <span class="flecha">▼</span></a>
+                <div class="dropdown-content">
+                    <a href="personajes.html">PERSONAJES</a>
+                    <a href="fauna.html">FAUNA</a>
+                    <a href="evento.html">EVENTOS</a>
+                </div>
+            </li>
+            <li><a href="#">COMUNIDAD</a></li>
+        </ul>
+    </nav>
+
     <header>
-        <h1>Lista de Villagers</h1>
+        <h1>PERSONAJES / VECINOS</h1>
     </header>
 
-    <main>
-        <div id="loading">Loading...</div>
+    <!-- Filtros opcionales -->
+    <div class="filter-container">
+        <button class="filter-btn active">Filtro</button>
+        <button class="filter-btn">Orden alfabético</button>
+    </div>
+
+    <main class="list-container">
+        <div id="loading">Cargando personajes...</div>
         <ul id="resultCont"></ul>
     </main>
 
+    <footer class="footer">
+        <!-- Tu footer existente -->
+    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="js/personajes.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
