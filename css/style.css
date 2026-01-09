@@ -1328,4 +1328,232 @@
         font-size: 0.9rem;
     }
 }
+/* ESTILOS PARA FILTROS DE FAUNA (PECES E INSECTOS) */
 
+/* Fondo específico para página de fauna */
+.page-fauna .filter-container {
+    background: var(--green);
+    padding: 30px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.page-fauna header {
+    background: var(--yellow);
+}
+
+.page-fauna .list-container {
+    background: var(--green);
+}
+
+/* Pestañas de tipo de fauna */
+.filter-tabs {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: var(--dark-gray);
+    border: 2px solid var(--white);
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tab-btn:hover {
+    background-color: var(--white);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.tab-btn.active {
+    background-color: var(--white);
+    border-color: var(--green);
+    color: var(--green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(117, 147, 93, 0.3);
+}
+
+/* Estilos de filtros para fauna */
+.page-fauna .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-fauna .filter-group label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--white);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.page-fauna .filter-select {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--white);
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    min-width: 150px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2375935D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+.page-fauna .filter-select:hover {
+    background-color: var(--white);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.page-fauna .filter-select:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(164, 217, 254, 0.3);
+}
+
+.page-fauna .filter-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Botón de filtro para fauna */
+.page-fauna .filter-btn {
+    background-color: var(--white);
+    color: var(--green);
+    border: 2px solid var(--white);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.page-fauna .filter-btn:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Contador de resultados para fauna */
+.page-fauna .filter-results {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.page-fauna .filter-results span {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--white);
+    font-size: 0.95rem;
+    padding: 10px 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    display: inline-block;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Tarjetas de fauna con detalles adicionales */
+.fauna-item .character-card-details {
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+/* Responsive para filtros de fauna */
+@media (max-width: 768px) {
+    .page-fauna .filter-container {
+        padding: 20px 4%;
+        gap: 15px;
+    }
+    
+    .filter-tabs {
+        gap: 10px;
+    }
+    
+    .tab-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .page-fauna .filter-group {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .page-fauna .filter-select {
+        width: 100%;
+    }
+    
+    .page-fauna .filter-btn {
+        width: 100%;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-tabs {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .tab-btn {
+        width: 100%;
+        font-size: 0.85rem;
+    }
+    
+    .page-fauna .filter-group label {
+        font-size: 0.85rem;
+    }
+    
+    .page-fauna .filter-select {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+        min-width: unset;
+    }
+    
+    .page-fauna .filter-btn {
+        font-size: 0.9rem;
+    }
+    
+    .page-fauna .filter-results span {
+        font-size: 0.85rem;
+        padding: 8px 20px;
+    }
+}
