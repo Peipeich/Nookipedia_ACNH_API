@@ -1557,3 +1557,115 @@
         padding: 8px 20px;
     }
 }
+/* ==========================================
+   BOTONES "VER MÁS" EN INDEX
+   ========================================== */
+
+/* Contenedor del footer de sección */
+.section-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.section-footer-fauna {
+    padding-bottom: 0;
+}
+
+/* Botón "Ver más" general */
+.view-more-btn {
+    display: inline-block;
+    background-color: var(--brown);
+    color: var(--white);
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+}
+
+.view-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.view-more-btn:hover::before {
+    left: 100%;
+}
+
+.view-more-btn:hover {
+    background-color: var(--yellow);
+    color: var(--brown);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(169, 113, 46, 0.3);
+}
+
+/* Botón específico para fauna (colores diferentes) */
+.view-more-fauna {
+    background-color: var(--white);
+    color: var(--green);
+    border: 2px solid var(--white);
+}
+
+.view-more-fauna:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    border-color: var(--blue);
+    box-shadow: 0 8px 25px rgba(164, 217, 254, 0.4);
+}
+
+/* Animación de pulso sutil */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+.view-more-btn {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.view-more-btn:hover {
+    animation: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .section-footer {
+        margin-top: 30px;
+        padding: 15px 0;
+    }
+    
+    .view-more-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-footer {
+        margin-top: 20px;
+    }
+    
+    .view-more-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+        width: 90%;
+        max-width: 300px;
+    }
+}
