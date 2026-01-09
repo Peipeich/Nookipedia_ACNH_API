@@ -55,7 +55,6 @@ $(document).ready(function () {
 $(document).ready(function () {
     const $faunaList = $("#resultCont");
     const $loading = $("#loading");
-    const $filterMonth = $("#filterMonth");
     const $filterLocation = $("#filterLocation");
     const $filterPrice = $("#filterPrice");
     const $resetFilters = $("#resetFilters");
@@ -166,7 +165,6 @@ $(document).ready(function () {
                          type === 'bugs' ? critter.sell_nook : 
                          critter.sell_nook;
             const location = critter.location || "Mar";
-            const months = getMonthsString(critter);
 
             htmlContent += `
                 <li class="fauna-item" data-location="${location}" data-price="${price}">
@@ -178,8 +176,7 @@ $(document).ready(function () {
                             <div class="character-card-name">${critter.name}</div>
                             <div class="character-card-details">
                                 💰 ${price} Bells<br>
-                                📍 ${location}<br>
-                                📅 ${months}
+                                📍 ${location}
                             </div>
                         </div>
                     </a>
@@ -190,39 +187,12 @@ $(document).ready(function () {
         $faunaList.html(htmlContent);
     }
 
-    // Función auxiliar para obtener meses disponibles
-    function getMonthsString(critter) {
-        if (critter.north && critter.north.months) {
-            return critter.north.months;
-        }
-        return "Todo el año";
-    }
-
-    // Función para verificar si está disponible en un mes específico
-    function isAvailableInMonth(critter, month) {
-        if (month === 'all') return true;
-        
-        const monthNum = parseInt(month);
-        
-        if (critter.north && critter.north.months_array) {
-            return critter.north.months_array.includes(monthNum);
-        }
-        
-        return false;
-    }
-
     // Función para aplicar filtros
     function applyFilters() {
-        const selectedMonth = $filterMonth.val();
         const selectedLocation = $filterLocation.val();
         const selectedPrice = parseInt($filterPrice.val());
 
         let filtered = allCritters;
-
-        // Filtrar por mes
-        if (selectedMonth !== 'all') {
-            filtered = filtered.filter(c => isAvailableInMonth(c, selectedMonth));
-        }
 
         // Filtrar por ubicación
         if (selectedLocation !== 'all') {
@@ -255,13 +225,11 @@ $(document).ready(function () {
     }
 
     // Event listeners para los filtros
-    $filterMonth.on('change', applyFilters);
     $filterLocation.on('change', applyFilters);
     $filterPrice.on('change', applyFilters);
 
     // Botón de reiniciar filtros
     $resetFilters.on('click', function() {
-        $filterMonth.val('all');
         $filterLocation.val('all');
         $filterPrice.val('0');
         renderCritters(allCritters, currentType);
