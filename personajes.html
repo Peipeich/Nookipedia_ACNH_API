@@ -34,10 +34,27 @@
         <h1>PERSONAJES / VECINOS</h1>
     </header>
 
-    <!-- Filtros opcionales -->
+    <!-- Filtros funcionales -->
     <div class="filter-container">
-        <button class="filter-btn active">Filtro</button>
-        <button class="filter-btn">Orden alfabético</button>
+        <div class="filter-group">
+            <label for="filterSpecies">Especie:</label>
+            <select id="filterSpecies" class="filter-select">
+                <option value="all">Todas</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="filterPersonality">Personalidad:</label>
+            <select id="filterPersonality" class="filter-select">
+                <option value="all">Todas</option>
+            </select>
+        </div>
+        
+        <button id="resetFilters" class="filter-btn">Reiniciar Filtros</button>
+        
+        <div class="filter-results">
+            <span id="filterCount"></span>
+        </div>
     </div>
 
     <main class="list-container">
@@ -46,7 +63,45 @@
     </main>
 
     <footer class="footer">
-        <!-- Tu footer existente -->
+        <div class="footer-content">
+            <!-- Sección 1 -->
+            <div class="footer-section">
+                <h3>Sobre ACNH</h3>
+                <p>Tu guía definitiva para Animal Crossing: New Horizons. Descubre vecinos, fauna, eventos y mucho más.</p>
+            </div>
+            <!-- Sección 2 -->
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="personajes.html">Personajes</a></li>
+                    <li><a href="fauna.html">Fauna</a></li>
+                    <li><a href="evento.html">EVENTOS</a></li>
+                    <li><a href="#">Comunidad</a></li>
+                </ul>
+            </div>
+            <!-- Sección 3 -->
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <p>Únete a nuestra comunidad y mantente al día con las últimas novedades</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Discord">💬</a>
+                    <a href="#" aria-label="YouTube">📺</a>
+                </div>
+            </div>
+        </div>
+        <!-- Decoración con hojas -->
+        <div class="footer-decoration">
+            <span class="leaf-icon">🍃</span>
+            <span class="leaf-icon">🍂</span>
+            <span class="leaf-icon">🍃</span>
+        </div>
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>Hecho con <span class="heart">❤️</span> para los fans de Animal Crossing</p>
+            <p>&copy; 2026 ACNH Wiki | Animal Crossing es propiedad de Nintendo</p>
+        </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

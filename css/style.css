@@ -1184,3 +1184,147 @@
          gap: 15px;
      }
  }
+
+ /* ESTILOS ADICIONALES PARA FILTROS EN PERSONAJES.HTML */
+
+/* Contenedor de filtros mejorado */
+.filter-container {
+    background-color: var(--bg-cream-light);
+    padding: 30px 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Grupo de filtro individual */
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-group label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--brown);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Select personalizado */
+.filter-select {
+    background-color: var(--white);
+    border: 2px solid var(--brown);
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    min-width: 150px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A9712E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+.filter-select:hover {
+    background-color: var(--yellow);
+    border-color: var(--green);
+    transform: translateY(-2px);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--green);
+    box-shadow: 0 0 0 3px rgba(117, 147, 93, 0.1);
+}
+
+/* Botón de filtro */
+.filter-btn {
+    background-color: var(--yellow);
+    color: var(--brown);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--green);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Contador de resultados */
+.filter-results {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.filter-results span {
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--brown);
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    background-color: var(--white);
+    border-radius: 20px;
+    display: inline-block;
+    box-shadow: var(--shadow-soft);
+}
+
+/* Responsive para filtros */
+@media (max-width: 768px) {
+    .filter-container {
+        padding: 20px 4%;
+        gap: 15px;
+    }
+    
+    .filter-group {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .filter-select {
+        width: 100%;
+    }
+    
+    .filter-btn {
+        width: 100%;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-group label {
+        font-size: 0.85rem;
+    }
+    
+    .filter-select {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+        min-width: unset;
+    }
+    
+    .filter-btn {
+        font-size: 0.9rem;
+    }
+}
