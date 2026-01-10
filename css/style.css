@@ -1716,7 +1716,7 @@
 .detail-nav {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 30px;
+    padding: 2rem;
 }
 
 .detail-nav a {
