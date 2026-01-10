@@ -1772,6 +1772,13 @@
 }
 
 /* Responsive */
+
+@media (max-width: 1024px) {
+    .page-detail header {
+        padding-top: 150px;
+    }
+}
+
 @media (max-width: 768px) {
     .villager-detail-card {
         grid-template-columns: 1fr;
