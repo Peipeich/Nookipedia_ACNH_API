@@ -1,55 +1,60 @@
+// js/detallespersonajes.js
 $(document).ready(function () {
-    const $villagersdetailscont = $("#villagerDetails");
+
+    const params = new URLSearchParams(window.location.search);
+    const villagerName = params.get("id");
+
+    const $container = $("#villagerDetails");
     const $loading = $("#loading");
 
     const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
-    // Usamos el endpoint general de vecinos para traer a todos
-    const apiUrl = `https://api.nookipedia.com/villagers`; 
+    const apiUrl = `https://api.nookipedia.com/villagers?name=${villagerName}`;
     const proxyUrl = "https://corsproxy.io/?url=";
 
+    if (!villagerName) {
+        $loading.text("Villager not found.");
+        return;
+    }
+
     fetch(proxyUrl + encodeURIComponent(apiUrl), {
-        method: 'GET',
         headers: {
             "X-API-KEY": apiKey,
             "Accept-Version": "1.0.0"
         }
     })
     .then(res => {
-        if (!res.ok) throw new Error("API Error: " + res.status);
+        if (!res.ok) throw new Error("API error");
         return res.json();
     })
     .then(data => {
-        if (!data || data.length === 0) {
-            throw new Error("No villagers found.");
-        }
+        const v = data[0];
 
-        // --- EL TRUCO ESTÁ AQUÍ ---
-        // Usamos .slice(0, 20) para quedarnos solo con los primeros 20 del array
-        const limitedVillagers = data.slice(0, 20);
+        $("#villagerName").text(v.name);
 
-        let html = "";
-        
-        // Recorremos los 20 personajes limitados
-        limitedVillagers.forEach(villager => {
-            html += `
-                <div class="villager-card">
-                    <h2>${villager.name}</h2>
-                    <img src="${villager.image_url}" alt="${villager.name}" width="100">
-                    <p><strong>Species:</strong> ${villager.species}</p>
-                    <p><strong>Personality:</strong> ${villager.personality}</p>
-                    <a href="detalle-vecino.html?id=${encodeURIComponent(villager.name)}">Ver Detalles</a>
-                    <hr>
+        const html = `
+            <article class="villager-detail-card">
+                <div class="villager-detail-image">
+                    <img src="${v.image_url}" alt="${v.name}">
                 </div>
-            `;
-        });
-        
-        $villagersdetailscont.html(html);
+
+                <div class="villager-detail-info">
+                    <ul>
+                        <li><strong>Species:</strong> ${v.species}</li>
+                        <li><strong>Personality:</strong> ${v.personality}</li>
+                        <li><strong>Gender:</strong> ${v.gender}</li>
+                        <li><strong>Birthday:</strong> ${v.birthday}</li>
+                        <li><strong>Catchphrase:</strong> “${v.catchphrase}”</li>
+                        <li><strong>Hobby:</strong> ${v.hobby}</li>
+                    </ul>
+                </div>
+            </article>
+        `;
+
+        $container.html(html);
     })
     .catch(err => {
-        console.error("Error:", err);
-        $villagersdetailscont.html(`<p style="color:red;">${err.message}</p>`);
-    })
-    .finally(() => {
-        $loading.hide();
+        console.error(err);
+        $loading.text("Error loading villager information.");
     });
+
 });
