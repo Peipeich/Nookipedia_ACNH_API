@@ -1,49 +1,59 @@
 $(document).ready(function () {
-    const $container = $("#faunaDetails"); // O el ID de tu contenedor de lista
+
+    const params = new URLSearchParams(window.location.search);
+    const faunaName = params.get("name");
+
+    const $container = $("#faunaDetails");
     const $loading = $("#loading");
-    const apiKey = "PONER-ACA-LA-API-KEY";
-    const apiUrl = "https://api.nookipedia.com/nh/fish"; 
+
+    const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
+    const apiUrl = `https://api.nookipedia.com/nh/fish?name=${encodeURIComponent(faunaName)}`;
     const proxyUrl = "https://corsproxy.io/?url=";
 
+    if (!faunaName) {
+        $loading.text("Fauna not found.");
+        return;
+    }
+
     fetch(proxyUrl + encodeURIComponent(apiUrl), {
-        method: "GET",
         headers: {
             "X-API-KEY": apiKey,
             "Accept-Version": "1.0.0"
         }
     })
     .then(res => {
-        if (!res.ok) throw new Error("Error connecting to the API");
+        if (!res.ok) throw new Error("API error");
         return res.json();
     })
-    .then(fishList => {
-        $container.empty();
+    .then(data => {
+        const f = data[0];
 
-        // LIMITAR A 20 PECES
-        const limitedList = fishList.slice(0, 20);
+        $("#faunaName").text(f.name);
 
-        let html = '<div class="grid-fauna">'; // Puedes usar un grid similar al de eventos
-        
-        limitedList.forEach(fish => {
-            const imagen = fish.image_url || fish.render_url || "";
-            html += `
-                <div class="fish-card">
-                    <h3>${fish.name}</h3>
-                    <img src="${imagen}" alt="${fish.name}" width="80">
-                    <p>Price: ${fish.sell_nook} Bells</p>
-                    <a href="detalle-pez.html?name=${encodeURIComponent(fish.name)}">Ver más</a>
+        const html = `
+            <article class="fauna-detail-card">
+                <div class="fauna-detail-image">
+                    <img src="${f.image_url || f.render_url}" alt="${f.name}">
                 </div>
-            `;
-        });
 
-        html += '</div>';
+                <div class="fauna-detail-info">
+                    <ul>
+                        <li><strong>Location:</strong> ${f.location}</li>
+                        <li><strong>Sell Price:</strong> ${f.sell_nook} Bells</li>
+                        <li><strong>Shadow Size:</strong> ${f.shadow}</li>
+                        <li><strong>Rarity:</strong> ${f.rarity}</li>
+                        <li><strong>Available Months:</strong> ${f.north.availability_array.join(", ")}</li>
+                        <li><strong>Time:</strong> ${f.north.time}</li>
+                    </ul>
+                </div>
+            </article>
+        `;
+
         $container.html(html);
     })
     .catch(err => {
-        console.error("Error:", err);
-        $container.html(`<p>Error: ${err.message}</p>`);
-    })
-    .finally(() => {
-        if ($loading.length) $loading.hide();
+        console.error(err);
+        $loading.text("Error loading fauna information.");
     });
+
 });
