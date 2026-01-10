@@ -6,24 +6,28 @@
     <title>Detalle de Villager</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <header>
-        <a href="personajes.html">Volver al listado</a>
-        <a href="index.html">volver principal</a>
-        <h1>Detalle de Villager</h1>
-    </header>
 
-    <main>
-        <div id="villagerDetails">
-            <div id="loading">Loading...</div>
-        </div>
-    </main>
+<body class="page-detail">
 
-    <footer>
-       
-    </footer>
+<header class="detail-header">
+    <div class="detail-nav">
+        <a href="personajes.html">← Volver al listado</a>
+        <a href="index.html">Inicio</a>
+    </div>
+    <h1 id="villagerName">Detalle de Villager</h1>
+</header>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/detallespersonajes.js"></script>
+<main class="detail-container">
+    <div id="villagerDetails">
+        <div id="loading">Loading villager data...</div>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>&copy; 2026 ACNH Wiki | Animal Crossing is owned by Nintendo</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="js/detallespersonajes.js"></script>
 </body>
 </html>
