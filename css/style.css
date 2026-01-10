@@ -1870,12 +1870,6 @@
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-    .fauna-header {
-        padding-top: 180px;
-    }
-}
-
 @media (max-width: 768px) {
     .fauna-detail-card {
         grid-template-columns: 1fr;
