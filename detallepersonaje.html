@@ -1,72 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" class="page-detail">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Villager Detail | ACNH</title>
+    <title>Detalle de Villager</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://use.typekit.net/jgc2fky.css">
 </head>
+<body>
+    <header>
+        <a href="personajes.html">Volver al listado</a>
+        <a href="index.html">volver principal</a>
+        <h1>Detalle de Villager</h1>
+    </header>
 
-<body class="page-detail">
-
-<nav class="navbar">
-    <div class="logo"><a href="index.html">ACNH</a></div>
-    <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-    </div>
-    <ul class="nav-links">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="#">EXPLORE</a></li>
-        <li class="has-dropdown">
-            <a href="#" class="parent-link">ANIMAL CROSSING <span class="flecha">▼</span></a>
-            <div class="dropdown-content">
-                <a href="personajes.html">VILLAGERS</a>
-                <a href="fauna.html">FAUNA</a>
-                <a href="evento.html">EVENTS</a>
-            </div>
-        </li>
-        <li><a href="#">COMUNITY</a></li>
-    </ul>
-</nav>
-
-<header class="detail-header">
-    <h1 id="villagerName">Loading...</h1>
-</header>
-
-<main class="detail-container">
-    <div id="loading">Loading villager data...</div>
-
-    <section id="villagerDetail" class="villager-detail hidden">
-        <div class="villager-image">
-            <img id="villagerImage" src="" alt="">
+    <main>
+        <div id="villagerDetails">
+            <div id="loading">Loading...</div>
         </div>
+    </main>
 
-        <div class="villager-info">
-            <ul>
-                <li><strong>Species:</strong> <span id="villagerSpecies"></span></li>
-                <li><strong>Personality:</strong> <span id="villagerPersonality"></span></li>
-                <li><strong>Gender:</strong> <span id="villagerGender"></span></li>
-                <li><strong>Birthday:</strong> <span id="villagerBirthday"></span></li>
-                <li><strong>Catchphrase:</strong> “<span id="villagerCatchphrase"></span>”</li>
-                <li><strong>Hobby:</strong> <span id="villagerHobby"></span></li>
-            </ul>
+    <footer>
+       
+    </footer>
 
-            <a href="personajes.html" class="back-btn">← Back to Villagers</a>
-        </div>
-    </section>
-</main>
-
-<footer class="footer">
-    <div class="footer-bottom">
-        <p>&copy; 2026 ACNH Wiki | Animal Crossing is owned by Nintendo</p>
-    </div>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="js/detallepersonaje.js"></script>
-<script src="js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/detallespersonajes.js"></script>
 </body>
 </html>
