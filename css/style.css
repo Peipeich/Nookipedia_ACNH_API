@@ -857,7 +857,7 @@
      padding: 0;
  }
  
- /* Tarjetas de personajes/fauna */
+ /* Tarjetas de personajes/fauna/eventos */
  .character-card {
      background-color: var(--bg-crema);
      border-radius: 15px;
@@ -1367,7 +1367,7 @@
 }
 
 .page-event .list-container {
-    background: var(--bg-crema);
+    background: var(--blue);
 }
 
 /* Pestañas de tipo de fauna */
@@ -1578,6 +1578,175 @@
         padding: 8px 20px;
     }
 }
+
+/* Estilos de filtros para eventos */
+.page-event .filter-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.page-event .filter-group label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    color: var(--brown);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.page-event .filter-select {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--white);
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--dark-gray);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    min-width: 150px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2375935D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 20px;
+    padding-right: 40px;
+}
+
+.page-event .filter-select:hover {
+    background-color: var(--white);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+.page-event .filter-select:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(164, 217, 254, 0.3);
+}
+
+.page-event .filter-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Botón de filtro para eventos */
+.page-event .filter-btn {
+    background-color: var(--white);
+    color: var(--brown);
+    border: 2px solid var(--white);
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.page-event .filter-btn:hover {
+    background-color: var(--blue);
+    color: var(--white);
+    border-color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Contador de resultados para eventos */
+.page-event .filter-results {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.page-event .filter-results span {
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--brown);
+    font-size: 0.95rem;
+    padding: 10px 25px;
+    background-color: rgba(255, 255, 255);
+    border-radius: 25px;
+    display: inline-block;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Tarjetas de eventos con detalles adicionales */
+.event-item .character-card-details {
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+/* Responsive para filtros de eventos */
+@media (max-width: 768px) {
+    .page-event .filter-container {
+        padding: 20px 4%;
+        gap: 15px;
+    }
+    
+    .filter-tabs {
+        gap: 10px;
+    }
+    
+    .tab-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .page-event .filter-group {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .page-event .filter-select {
+        width: 100%;
+    }
+    
+    .page-event .filter-btn {
+        width: 100%;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-tabs {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .tab-btn {
+        width: 100%;
+        font-size: 0.85rem;
+    }
+    
+    .page-event .filter-group label {
+        font-size: 0.85rem;
+    }
+    
+    .page-event .filter-select {
+        font-size: 0.85rem;
+        padding: 8px 15px;
+        min-width: unset;
+    }
+    
+    .page-event .filter-btn {
+        font-size: 0.9rem;
+    }
+    
+    .page-event .filter-results span {
+        font-size: 0.85rem;
+        padding: 8px 20px;
+    }
+}
+
 /* ==========================================
    BOTONES "VER MÁS" EN INDEX
    ========================================== */
