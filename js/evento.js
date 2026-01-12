@@ -126,9 +126,9 @@ $(document).ready(function () {
             htmlContent += `
                 <li>
                     <a href="detalleevento.html?name=${encodeURIComponent(eventName)}">
-                        ${eventName}
+                        ${eventName} <br> ${date}
+                       
                     </a>
-                    <span> - ${date}</span>
                 </li>
             `;
         });
