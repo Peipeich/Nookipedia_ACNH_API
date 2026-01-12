@@ -136,7 +136,7 @@ $(document).ready(function() {
                 $.each(eventos.slice(0, 4), function(i, ev) {
                     const colorClase = (i % 2 === 0) ? 'image-placeholder-green' : 'image-placeholder-blue';
                     const $divColor = $('<div>').addClass(`evento-card ${colorClase}`);
-                    const $divTitulo = $('<div>').addClass('evento-card').css({'background':'#d3d3d3','cursor':'pointer'}).text(ev.event)
+                    const $divTitulo = $('<div>').addClass('evento-card').css({'background':'var(--bg-crema)','cursor':'pointer'}).text(ev.event)
                         .on('click', () => window.location.href = `evento.html?nombre=${encodeURIComponent(ev.event)}`);
                     if (i < 2) $grid.append($divTitulo, $divColor);
                     else $grid.append($divColor, $divTitulo);
