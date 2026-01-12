@@ -8,11 +8,12 @@ $(document).ready(function () {
     const $loading = $("#loading");
 
     const apiKey = "eebcaf09-f716-4786-ba4e-9fba802d6aaa";
+    // Nota: Es mejor buscar por nombre exacto para evitar múltiples resultados
     const apiUrl = `https://api.nookipedia.com/villagers?name=${villagerName}`;
     const proxyUrl = "https://corsproxy.io/?url=";
 
     if (!villagerName) {
-        $loading.text("Villager not found.");
+        $loading.text("Villager not found in URL.");
         return;
     }
 
@@ -27,14 +28,28 @@ $(document).ready(function () {
         return res.json();
     })
     .then(data => {
+        // La API devuelve un array, tomamos el primer elemento
         const v = data[0];
 
+        if (!v) {
+            $loading.text("Villager not found in database.");
+            return;
+        }
+
+        // Limpiamos el mensaje de carga
+        $loading.empty();
+
         $("#villagerName").text(v.name);
+
+        // Formatear el cumpleaños (Nookipedia usa birthday_month y birthday_day)
+        const birthdayStr = (v.birthday_month && v.birthday_day) 
+                            ? `${v.birthday_month} ${v.birthday_day}` 
+                            : "Unknown";
 
         const html = `
             <article class="villager-detail-card">
                 <div class="villager-detail-image">
-                    <img src="${v.image_url}" alt="${v.name}">
+                    <img src="${v.image_url}" alt="${v.name}" style="max-width: 200px;">
                 </div>
 
                 <div class="villager-detail-info">
@@ -42,9 +57,9 @@ $(document).ready(function () {
                         <li><strong>Species:</strong> ${v.species}</li>
                         <li><strong>Personality:</strong> ${v.personality}</li>
                         <li><strong>Gender:</strong> ${v.gender}</li>
-                        <li><strong>Birthday:</strong> ${v.birthday}</li>
-                        <li><strong>Catchphrase:</strong> “${v.catchphrase}”</li>
-                        <li><strong>Hobby:</strong> ${v.hobby}</li>
+                        <li><strong>Birthday:</strong> ${birthdayStr}</li>
+                        <li><strong>Catchphrase:</strong> “${v.phrase || 'N/A'}”</li>
+                        <li><strong>Hobby:</strong> ${v.hobby || 'Not specified'}</li>
                     </ul>
                 </div>
             </article>
@@ -54,7 +69,7 @@ $(document).ready(function () {
     })
     .catch(err => {
         console.error(err);
-        $loading.text("Error loading villager information.");
+        $loading.text("Error loading villager information. Please try again.");
     });
 
 });
